@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import Cart from "./Component/Cart";
+import BuyPage from "./Component/BuyPage";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import BuyPage from "./Component/BuyPage";
-import { Container } from "@mui/material";
+import { Container, Grid, Card, CardContent, Typography } from "@mui/material";
 
 function App() {
   const [cartItem, setCartItem] = useState([]);
@@ -39,7 +37,15 @@ function App() {
 
   return (
     <Container>
-      <BuyPage addInCart={addInCart} />
+      <ToastContainer />
+      <Grid container >
+        <Grid item xs={8}>
+          <BuyPage addInCart={addInCart} />
+        </Grid>
+        <Grid item xs={4}>
+          <Cart cartItem={cartItem} removeItem={removeItem} buyNow={buyNow} />
+        </Grid>
+      </Grid>
     </Container>
   );
 }
